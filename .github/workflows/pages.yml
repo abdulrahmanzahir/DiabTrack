@@ -16,21 +16,25 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: app/package-lock.json
       - name: Install & build
         run: |
-          npm ci
+          npm ci || npm install
           npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: SPA 404 fallback
+        run: cp dist/index.html dist/404.html
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: app/dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -38,6 +42,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
