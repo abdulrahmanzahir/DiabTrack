@@ -1,7 +1,7 @@
 name: Deploy Frontend to GitHub Pages
 on:
   push:
-    branches: [ main ]
+    branches: [ frontend-history ]
   workflow_dispatch:
 
 permissions:
@@ -30,7 +30,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist   # Vite's default output
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
