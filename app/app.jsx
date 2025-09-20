@@ -102,7 +102,7 @@ export default function DiabetesTrackerApp() {
       };
       
       // Make API request
-      const response = await fetch('https://backend-gfgy.onrender.com/chatgpt-predict', {
+      const response = await fetch('https://webapp-diabtrack-rh8c.onrender.com/chatgpt-predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1097,5 +1097,6 @@ export default function DiabetesTrackerApp() {
     </div>
   );
 }
+
 
 
