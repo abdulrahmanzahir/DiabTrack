@@ -66,7 +66,7 @@ export default function DiabetesTrackerApp() {
       // Comment this out if you implement real authentication
       if (!token) {
         // Simple login to get token for testing
-        const loginResponse = await fetch('https://backend-gfgy.onrender.com/token', {
+        const loginResponse = await fetch('https://webapp-diabtrack-rh8c.onrender.com/token', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -1097,4 +1097,5 @@ export default function DiabetesTrackerApp() {
     </div>
   );
 }
+
 
